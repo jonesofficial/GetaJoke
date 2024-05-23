@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetaJoke</title>
+
+    <!-- Headings font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!-- Joke font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poetsen+One&display=swap" rel="stylesheet">
+    <!-- Input font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poetsen+One&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <div class="main-title">
+        <h1>GetaJoke</h1>
+    </div>
+    <!-- 
+    <div class="main-pic">
+        <img src="/images/clown.png" alt="Clown.png" >
+    </div> -->
+
+    <div class="container">
+        <div class="joke-display">
+        <% if (locals.data) { %>
+            <% if(data.joke) {%>
+                <p>
+                    <%= data.joke %>
+                </p>
+                <% }else{ %>
+                    <p>
+                        <%= data.setup %>
+                    </p>
+                    <p>
+                        <%= data.delivery %>
+                    </p>
+                    <% } %>
+                        <% }else{ %>
+                            <p>Please Select one!!!</p>
+                            <p>Or Reload to Generate a Random One! </p>
+         <% } %>
+
+        </div>
+
+        <form id="myForm" action="/" method="POST">
+
+            <label for="typeOption">Type:</label>
+            <select name="typeOption" id="typeOption">
+                <option value="" data-display="Select">Select Type</option>
+                <option value="single">Single</option>
+                <option value="twopart">Twopart</option>
+            </select>
+
+            <label for="categoryOption">Category:</label>
+            <select name="categoryOption" id="categoryOption">
+                <option value="" data-display="Select">Select Category</option>
+                <option value="programming">Programming</option>
+                <option value="misc">Misc</option>
+                <option value="dark">Dark</option>
+                <option value="pun">Pun</option>
+                <option value="spooky">Spooky</option>
+                <option value="christmas">Christmas</option>
+            </select>
+
+        
+            <label for="checkboxes">Avoid:</label>
+
+            <div class="checkbox-design">
+               
+                <div class="checkbox-design">
+                    <div class="checkbox-design">
+                        <input type="checkbox" name="flags" value="nsfw" id="cb1"><label for="cb1">nsfw</label>
+                        <input type="checkbox" name="flags" value="religious" id="cb2"><label for="cb2">Religious</label>
+                        <input type="checkbox" name="flags" value="political" id="cb3"><label for="cb3">Political</label>
+                        <input type="checkbox" name="flags" value="racist" id="cb4"><label for="cb4">Racist</label>
+                        <input type="checkbox" name="flags" value="sexist" id="cb5"><label for="cb5">Sexist</label>
+                    </div>
+                    <div class="checkbox-design">
+                        <input type="checkbox" name="flags" value="explicit" id="cb6"><label for="cb6">Explicit</label>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <button type="submit" class="submit">Get Joke</button>
+        </form>
+    </div>
+
+    <% if(locals.error){ %>
+        <%= error %>
+            <% } %>
+</body>
+
+</html>
